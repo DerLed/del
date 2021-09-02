@@ -17,7 +17,7 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-TCHAR mainMessage[] = L"Какой то-текст!";
+TCHAR mainMessage[] = L"Какой то-текст!";////!!!!!!!!!!!!!!!!!!!
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -28,6 +28,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Разместите код здесь.
+
+    
 
     // Инициализация глобальных строк
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -102,6 +104,19 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
+   HWND hwndButton = CreateWindow(
+       L"BUTTON",  // Predefined class; Unicode assumed 
+       L"OK",      // Button text 
+       WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,  // Styles 
+       10,         // x position 
+       10,         // y position 
+       100,        // Button width
+       100,        // Button height
+       hWnd,     // Parent window
+       NULL,       // No menu.
+       (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE),
+       NULL);      // Pointer not needed.
+
    if (!hWnd)
    {
       return FALSE;
@@ -126,6 +141,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     RECT rect;
+    RECT rect1{ 15, 15, 100, 100 };
     COLORREF colorText = RGB(255, 0, 0);
 
     switch (message)
@@ -156,7 +172,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             SetTextColor(hdc, colorText);
             DrawText(hdc, mainMessage, -1, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
             DrawText(hdc, L"REREАБВГД", -1, &rect, DT_SINGLELINE | DT_CENTER | DT_TOP);
-            DrawText(hdc, L"Лево", -1, &rect, DT_SINGLELINE | DT_LEFT);
+            DrawText(hdc, L"Лево", -1, &rect, DT_LEFT);
+            DrawText(hdc, L"ПППППП", -1, &rect1, DT_LEFT);
             EndPaint(hWnd, &ps);
         }
         break;
