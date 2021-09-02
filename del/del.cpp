@@ -155,6 +155,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             GetClientRect(hWnd, &rect); // получаем ширину и высоту области для рисования
             SetTextColor(hdc, colorText);
             DrawText(hdc, mainMessage, -1, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+            DrawText(hdc, L"REREАБВГД", -1, &rect, DT_SINGLELINE | DT_CENTER | DT_TOP);
 
             EndPaint(hWnd, &ps);
         }
